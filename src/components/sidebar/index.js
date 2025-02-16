@@ -1,9 +1,10 @@
 import React, { useState } from "react";
-import { Drawer, List, ListItemButton, ListItemIcon, ListItemText, Collapse, Box, IconButton, AppBar, Toolbar } from "@mui/material";
+import { Drawer, List, ListItemButton, ListItemIcon, ListItemText, Collapse, Box, IconButton, AppBar, Toolbar, Typography } from "@mui/material";
 import { ExpandLess, ExpandMore, Menu as MenuIcon, Close as CloseIcon } from "@mui/icons-material";
 import { useNavigate } from "react-router-dom";
-import appRoutes from "../../routes/index.js"; // Changed the file extension to .js
+import appRoutes from "../../routes/index.js";
 import Logo from "../../assets/images/logo.png";
+import "@fontsource/montserrat";
 
 const Sidebar = () => {
   const [openSections, setOpenSections] = useState({});
@@ -24,13 +25,13 @@ const Sidebar = () => {
   const currentPath = window.location.pathname;
 
   const drawerContent = (
-    <List sx={{ padding: 0 }}>
+    <List sx={{ padding: 0, fontFamily: "Montserrat" }}>
       {/* Logo Section */}
       <Box display="flex" alignItems="center" justifyContent="center" height={80} sx={{ padding: "10px" }}>
         <img src={Logo} alt="Company Logo" style={{ maxWidth: "150px", maxHeight: "60px" }} />
       </Box>
 
-      <hr style={{ margin: "10px 0", border: "1px solid #ddd" }} />
+      <hr style={{ margin: "10px 0", border: "0.5px solid rgb(200, 200, 200)" }} />
 
       {/* Generate Sidebar Items Dynamically */}
       {appRoutes.map((route) => {
@@ -42,19 +43,23 @@ const Sidebar = () => {
             {route.subRoutes ? (
               <>
                 {/* Parent Button */}
-                <ListItemButton
-                  onClick={() => handleToggle(route.itemName)}
-                  sx={{
-                    backgroundColor: isChildSelected ? "#e8f5e9" : "transparent", // Highlight only if child is selected
-                    "&:hover": { backgroundColor: "#c8e6c9" },
-                  }}
-                >
-                  <ListItemIcon sx={{ color: isChildSelected ? "#388e3c" : "inherit" }}>
-                    {React.createElement(route.icon, { size: 24 })}
-                  </ListItemIcon>
-                  <ListItemText primary={route.itemName} />
-                  {openSections[route.itemName] ? <ExpandLess /> : <ExpandMore />}
-                </ListItemButton>
+                <Box sx={{ marginLeft: '10px', marginRight: '10px', mt: 1 }}>
+                  <ListItemButton
+                    onClick={() => handleToggle(route.itemName)}
+                    sx={{
+                      borderRadius: '10px',
+                      backgroundColor: isChildSelected ? "#e8f5e9" : "transparent",
+                      "&:hover": { backgroundColor: "#c8e6c9" },
+                      fontFamily: "Montserrat",
+                    }}
+                  >
+                    <ListItemIcon sx={{ color: isChildSelected ? "#388e3c" : "inherit" }}>
+                      {React.createElement(route.icon, { size: 24 })}
+                    </ListItemIcon>
+                    <ListItemText primary={route.itemName} disableTypography={true} />
+                    {openSections[route.itemName] ? <ExpandLess /> : <ExpandMore />}
+                  </ListItemButton>
+                </Box>
 
                 {/* Sub-Menu Items */}
                 <Collapse in={openSections[route.itemName]} timeout="auto" unmountOnExit>
@@ -62,44 +67,51 @@ const Sidebar = () => {
                     {route.subRoutes.map((subRoute) => {
                       const isSubSelected = currentPath === subRoute.route;
                       return (
-                        <ListItemButton
-                          key={subRoute.route}
-                          sx={{
-                            pl: 4,
-                            backgroundColor: isSubSelected ? "#c8e6c9" : "transparent", 
-                            "&:hover": { backgroundColor: "#a5d6a7" },
-                          }}
-                          onClick={() => {
-                            navigate(subRoute.route);
-                            handleDrawerToggle();
-                          }}
-                        >
-                          <ListItemIcon sx={{ color: isSubSelected ? "#388e3c" : "inherit" }}>
-                            {React.createElement(subRoute.icon, { size: 24 })}
-                          </ListItemIcon>
-                          <ListItemText primary={subRoute.itemName} />
-                        </ListItemButton>
+                        <Box sx={{ marginLeft: '10px', marginRight: '10px', mt: 1 }} key={subRoute.route}>
+                          <ListItemButton
+                            sx={{
+                              pl: 4,
+                              borderRadius: '10px',
+                              backgroundColor: isSubSelected ? "#c8e6c9" : "transparent",
+                              "&:hover": { backgroundColor: "#a5d6a7" },
+                              fontFamily: "Montserrat",
+                            }}
+                            onClick={() => {
+                              navigate(subRoute.route);
+                              handleDrawerToggle();
+                            }}
+                          >
+                            <ListItemIcon sx={{ color: isSubSelected ? "#388e3c" : "inherit" }}>
+                              {React.createElement(subRoute.icon, { size: 24 })}
+                            </ListItemIcon>
+                            <ListItemText primary={subRoute.itemName} disableTypography={true}  />
+                          </ListItemButton>
+                        </Box>
                       );
                     })}
                   </List>
                 </Collapse>
               </>
             ) : (
-              <ListItemButton
-                sx={{
-                  backgroundColor: isSelected ? "#c8e6c9" : "transparent", 
-                 "&:hover": { backgroundColor: "#a5d6a7" },
-                }}
-                onClick={() => {
-                  navigate(route.route);
-                  handleDrawerToggle();
-                }}
-              >
-                <ListItemIcon sx={{ color: isSelected ? "#388e3c" : "inherit" }}>
-                  {React.createElement(route.icon, { size: 24 })}
-                </ListItemIcon>
-                <ListItemText primary={route.itemName} />
-              </ListItemButton>
+              <Box sx={{ marginLeft: '10px', marginRight: '10px', mt: 1 }}>
+                <ListItemButton
+                  sx={{
+                    backgroundColor: isSelected ? "#c8e6c9" : "transparent",
+                    "&:hover": { backgroundColor: "#a5d6a7" },
+                    borderRadius: '10px',
+                    fontFamily: "Montserrat",
+                  }}
+                  onClick={() => {
+                    navigate(route.route);
+                    handleDrawerToggle();
+                  }}
+                >
+                  <ListItemIcon sx={{ color: isSelected ? "#388e3c" : "inherit" }}>
+                    {React.createElement(route.icon, { size: 24 })}
+                  </ListItemIcon>
+                  <ListItemText primary={route.itemName} disableTypography={true}  />
+                </ListItemButton>
+              </Box>
             )}
           </React.Fragment>
         );
@@ -127,8 +139,8 @@ const Sidebar = () => {
           display: { xs: "none", md: "block" },
           "& .MuiDrawer-paper": {
             width: 300,
-            boxSizing: "border-box",
             backdropFilter: "blur(10px)",
+            fontFamily: "Montserrat",
           },
         }}
       >
@@ -145,8 +157,8 @@ const Sidebar = () => {
           display: { xs: "block", md: "none" },
           "& .MuiDrawer-paper": {
             width: 240,
-            boxSizing: "border-box",
             backdropFilter: "blur(10px)",
+            fontFamily: "Montserrat",
           },
         }}
       >

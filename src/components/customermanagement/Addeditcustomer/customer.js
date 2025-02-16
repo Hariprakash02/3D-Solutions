@@ -33,12 +33,12 @@ const handleCustomerSubmit = (values) => {
 };
 
 const CustomerForm = () => (
-<Box sx={{width:'80%'}}>
-      <Typography variant="h4" align="center" sx={{ fontFamily: "Montserrat", marginBottom: 10  }}>
-        Add/Edit Customer Form
-      </Typography>
-      <DynamicForm formFields={customerFormFields} onSubmit={handleCustomerSubmit} />
-      </Box>
+  <Box sx={{ width: '100%', padding: '20px' }}>
+    <Typography variant="h6" sx={{ fontFamily: "Montserrat", marginBottom: 5 }}>
+      Add/Edit Customer Form
+    </Typography>
+    <DynamicForm formFields={customerFormFields} onSubmit={handleCustomerSubmit} />
+  </Box>
 );
 
 export default CustomerForm;
