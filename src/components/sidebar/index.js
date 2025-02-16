@@ -56,7 +56,7 @@ const Sidebar = () => {
                     <ListItemIcon sx={{ color: isChildSelected ? "#388e3c" : "inherit" }}>
                       {React.createElement(route.icon, { size: 24 })}
                     </ListItemIcon>
-                    <ListItemText primary={route.itemName} sx={{ fontFamily: "Montserrat" }} />
+                    <ListItemText primary={route.itemName} disableTypography={true} />
                     {openSections[route.itemName] ? <ExpandLess /> : <ExpandMore />}
                   </ListItemButton>
                 </Box>
@@ -84,7 +84,7 @@ const Sidebar = () => {
                             <ListItemIcon sx={{ color: isSubSelected ? "#388e3c" : "inherit" }}>
                               {React.createElement(subRoute.icon, { size: 24 })}
                             </ListItemIcon>
-                            <ListItemText primary={subRoute.itemName} sx={{ fontFamily: "Montserrat" }} />
+                            <ListItemText primary={subRoute.itemName} disableTypography={true}  />
                           </ListItemButton>
                         </Box>
                       );
@@ -109,7 +109,7 @@ const Sidebar = () => {
                   <ListItemIcon sx={{ color: isSelected ? "#388e3c" : "inherit" }}>
                     {React.createElement(route.icon, { size: 24 })}
                   </ListItemIcon>
-                  <ListItemText primary={route.itemName} sx={{ fontFamily: "Montserrat" }} />
+                  <ListItemText primary={route.itemName} disableTypography={true}  />
                 </ListItemButton>
               </Box>
             )}
