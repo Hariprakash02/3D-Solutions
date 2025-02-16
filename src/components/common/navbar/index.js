@@ -1,13 +1,12 @@
 import React, { useState } from "react";
-import { AppBar, Toolbar, IconButton, Menu, MenuItem, useMediaQuery, useTheme } from "@mui/material";
+import { AppBar, Toolbar, IconButton, Menu, MenuItem, Box, Typography } from "@mui/material";
 import { AccountCircle } from "@mui/icons-material";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useLocation } from "react-router-dom";
 
 const Navbar = () => {
   const [anchorEl, setAnchorEl] = useState(null);
   const navigate = useNavigate();
-  const theme = useTheme();
-  const isSmallScreen = useMediaQuery(theme.breakpoints.down("sm"));
+  const location = useLocation();
 
   // Handle menu open
   const handleMenuOpen = (event) => {
@@ -30,17 +29,33 @@ const Navbar = () => {
       position="sticky"
       elevation={0}
       sx={{
-        backgroundColor: "#f7f7f7",
+        backgroundColor: "rgba(255, 255, 255, 0.2)", // Glassy effect
+        backdropFilter: "blur(10px)", // Blur effect
+        WebkitBackdropFilter: "blur(10px)", // Safari compatibility
         color: "#333",
-        px: isSmallScreen ? 1 : 3, 
+        paddingX: "2rem",
+        boxShadow: "none",
+        fontFamily: "Montserrat",
       }}
     >
-      <Toolbar sx={{ display: "flex", justifyContent: "flex-end", mt: 1.5  }}>
+      <Toolbar sx={{ display: "flex", justifyContent: "space-between", alignItems: "center", height: "64px" }}>
+        {/* Display Current Route */}
+        <Typography variant="h6" sx={{ fontFamily: "Montserrat", fontWeight: 600 }}>
+          {location.pathname === "/"
+            ? "Home"
+            : location.pathname
+                .replace(/\//g, " / ") // Add spaces around slashes
+                .replace(/([A-Z])/g, " $1") // Add spaces before capital letters
+                .replace(/\s+/g, " ") // Remove extra spaces
+                .trim()}
+        </Typography>
+
         {/* User Profile Icon */}
         <IconButton color="inherit" onClick={handleMenuOpen}>
-          <AccountCircle sx={{ fontSize: isSmallScreen ? 36 : 42 }} />
+          <AccountCircle sx={{ fontSize: "2.5rem" }} />
         </IconButton>
 
+        {/* Dropdown Menu */}
         <Menu
           anchorEl={anchorEl}
           open={Boolean(anchorEl)}

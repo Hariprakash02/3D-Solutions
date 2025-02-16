@@ -25,51 +25,54 @@ import ExpenseForm from "./components/expenseandaccounting/expense/expense.js";
 import CustomerForm from "./components/customermanagement/Addeditcustomer/customer.js";
 import LeadForm from "./components/customermanagement/leadmanagement/leadmanagement.js";
 import FeedbackForm from "./components/customermanagement/feedbackandcomplaints/feedbackcomplaint.js";
+import { Box } from "@mui/material";
 
 
 
 const App = () => {
   return (
-    <Router>
-      <Routes>
-        {/* Public Routes - Uses AuthPage for Login/Register */}
-        <Route path="/" element={<AuthPage />} />
-        <Route path="/register" element={<AuthPage />} />
+    <Box sx={{backgroundColor: '#F2F2F2'}}>
+      <Router>
+        <Routes>
+          {/* Public Routes - Uses AuthPage for Login/Register */}
+          <Route path="/" element={<AuthPage />} />
+          <Route path="/register" element={<AuthPage />} />
 
-        {/* Protected Routes - Uses Layout with Sidebar/Navbar */}
-        <Route path="/*" element={<Layout />}>
-          <Route path="dashboard" element={<Dashboard />} />
-          <Route path="billing/invoices" element={<Invoices />} />
-          <Route path="billing/payments" element={<Payments />} />
-          <Route path="billing/quotations" element={<QuotationPage />} />
-          <Route path="inventory/products" element={<ProductPage />} />
-          <Route path="settings/general" element={<GeneralSettings />} />
-          <Route path="nav" element={<Nav />} />
-          <Route path="settings/security" element={<SecuritySettings />} />
-          <Route path="inventory/AddEditproducts" element={<AddEditProductForm />} />
-          <Route path="inventory/stockadjustment" element={<StockAdjustmentForm />} />
-          <Route path="inventory/warehouse" element={<WarehouseTransferForm />} />
-          <Route path="AddEditUser/userFormFields" element={<UserForm />} />
-          <Route path="RolePermission/RoleForm" element={<RoleForm />} />
-          <Route path="service/machinemaintanance" element={<MachineMaintenanceForm />} />
-          <Route path="service/toolReplacementField" element={<ToolReplacementForm />} />
-          <Route path="suppliervendor/VendorForm" element={<VendorForm />} />
-          <Route path="suppliervendor/PurchaseOrderForm" element={<PurchaseOrderForm />} />
-          <Route path="suppliervendor/SupplierPaymentForm" element={<SupplierPaymentForm />} />
-          <Route path="expenseaccounting/ExpenseForm" element={<ExpenseForm />} />
-          <Route path="expenseaccounting/PaymentReceiptForm" element={<PaymentReceiptForm />} />
-          <Route path="customermanagemnet/CustomerForm" element={<CustomerForm />} />
-          <Route path="customermanagemnet/LeadForm" element={<LeadForm />} />
-          <Route path="customermanagemnet/FeedbackForm" element={<FeedbackForm />}/>
+          {/* Protected Routes - Uses Layout with Sidebar/Navbar */}
+          <Route path="/*" element={<Layout />}>
+            <Route path="dashboard" element={<Dashboard />} />
+            <Route path="billing/invoices" element={<Invoices />} />
+            <Route path="billing/payments" element={<Payments />} />
+            <Route path="billing/quotations" element={<QuotationPage />} />
+            <Route path="inventory/products" element={<ProductPage />} />
+            <Route path="settings/general" element={<GeneralSettings />} />
+            <Route path="nav" element={<Nav />} />
+            <Route path="settings/security" element={<SecuritySettings />} />
+            <Route path="inventory/AddEditproducts" element={<AddEditProductForm />} />
+            <Route path="inventory/stockadjustment" element={<StockAdjustmentForm />} />
+            <Route path="inventory/warehouse" element={<WarehouseTransferForm />} />
+            <Route path="AddEditUser/userFormFields" element={<UserForm />} />
+            <Route path="RolePermission/RoleForm" element={<RoleForm />} />
+            <Route path="service/machinemaintanance" element={<MachineMaintenanceForm />} />
+            <Route path="service/toolReplacementField" element={<ToolReplacementForm />} />
+            <Route path="suppliervendor/VendorForm" element={<VendorForm />} />
+            <Route path="suppliervendor/PurchaseOrderForm" element={<PurchaseOrderForm />} />
+            <Route path="suppliervendor/SupplierPaymentForm" element={<SupplierPaymentForm />} />
+            <Route path="expenseaccounting/ExpenseForm" element={<ExpenseForm />} />
+            <Route path="expenseaccounting/PaymentReceiptForm" element={<PaymentReceiptForm />} />
+            <Route path="customermanagemnet/CustomerForm" element={<CustomerForm />} />
+            <Route path="customermanagemnet/LeadForm" element={<LeadForm />} />
+            <Route path="customermanagemnet/FeedbackForm" element={<FeedbackForm />}/>
 
-        </Route>
+          </Route>
 
-        {/* Catch-All Route for Undefined Pages */}
-        <Route path="*" element={<h1>404 - Page Not Found</h1>} />
+          {/* Catch-All Route for Undefined Pages */}
+          <Route path="*" element={<h1>404 - Page Not Found</h1>} />
 
 
-      </Routes>
-    </Router>
+        </Routes>
+      </Router>
+    </Box>
   );
 };
 

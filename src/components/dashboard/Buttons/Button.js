@@ -1,68 +1,59 @@
 import React from "react";
 import { FaHome, FaUser, FaCog, FaChartLine, FaBell, FaEnvelope } from "react-icons/fa";
-import { Box, Button, Grid, Typography, useMediaQuery } from "@mui/material";
-import { useTheme } from "@mui/system";
+import { Box, Button, Typography } from "@mui/material";
 
 const buttons = [
-  { label: "Home", icon: <FaHome size={20} />, className: "btn-home" },
-  { label: "User", icon: <FaUser size={20} />, className: "btn-user" },
-  { label: "Settings", icon: <FaCog size={20} />, className: "btn-settings" },
-  { label: "Analytics", icon: <FaChartLine size={20} />, className: "btn-analytics" },
-  { label: "Notifications", icon: <FaBell size={20} />, className: "btn-notifications" },
-  { label: "Messages", icon: <FaEnvelope size={20} />, className: "btn-messages" },
+  { label: "Home", icon: <FaHome size={20} /> },
+  { label: "User", icon: <FaUser size={20} /> },
+  { label: "Settings", icon: <FaCog size={20} /> },
+  { label: "Analytics", icon: <FaChartLine size={20} /> },
+  { label: "Notifications", icon: <FaBell size={20} /> },
+  { label: "Messages", icon: <FaEnvelope size={20} /> },
 ];
 
 const Dashboardbutton = () => {
-  const theme = useTheme();
-  const isMobile = useMediaQuery(theme.breakpoints.down("sm"));
-  const isTablet = useMediaQuery(theme.breakpoints.between("sm", "md"));
-
   return (
     <Box
       sx={{
-        width: isMobile ? "100%" : isTablet ? "80%" : "87rem",
+        display: "flex",
+        flexWrap: "wrap",
+        gap: "15px",
+        justifyContent: "center",
+        alignItems: "center",
+        padding: "20px",
+        maxWidth: "1200px",
         margin: "auto",
-        padding: isMobile ? "15px" : "20px",
-        textAlign: "center",
       }}
     >
-      {/* <Typography
-        sx={{
-          fontFamily: "'Montserrat', sans-serif",
-          fontSize: isMobile ? "24px" : "30px",
-          marginBottom: "20px",
-          color: "#333",
-        }}
-      >
-        Dashboard
-      </Typography> */}
-
-      <Grid container spacing={2} sx={{ marginTop: "13px" }}>
-        {buttons.map((btn, index) => (
-          <Grid item xs={12} sm={6} md={4} key={index}>
-            <Button
-              sx={{
-                mb: 2,
-                fontFamily: "'Montserrat', sans-serif",
-                width: "100%",
-                borderRadius: "5px",
-                padding: "20px 0px",
-                display: "flex",
-                justifyContent: "center",
-                alignItems: "center",
-                gap: "10px",
-                cursor: "pointer",
-                color: "black",
-                backgroundColor: "white",
-                
-              }}
-            >
-              {btn.icon}
-              <span>{btn.label}</span>
-            </Button>
-          </Grid>
-        ))}
-      </Grid>
+      {buttons.map((btn, index) => (
+        <Button
+          key={index}
+          sx={{
+            display: "flex",
+            alignItems: "center",
+            gap: "10px",
+            padding: "12px 20px",
+            borderRadius: "10px",
+            backgroundColor: "#2596be",
+            color: "white",
+            flex: "1 1 200px",
+            maxWidth: "300px",
+            textTransform: "none",
+            fontSize: "16px",
+            fontWeight: "500",
+            boxShadow: "none", // Slight shadow
+            transition: "all 0.3s ease-in-out",
+            "&:hover": {
+              backgroundColor: "#1565c0", // Slightly darker blue on hover
+              transform: "translateY(-2px)",
+              boxShadow: "none",
+            },
+          }}
+        >
+          {btn.icon}
+          <Typography variant="body1">{btn.label}</Typography>
+        </Button>
+      ))}
     </Box>
   );
 };
